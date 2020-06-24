@@ -1,9 +1,5 @@
-import React from 'react';
-// import { createStore } from 'redux';
-
-
-export const initialState = [
-    {
+//changes from array to object to avoid index issues
+export const initialState = {
     additionalPrice: 0, // what to update
     car: {
       price: 26395,
@@ -19,7 +15,7 @@ export const initialState = [
       { id: 4, name: 'Rear spoiler', price: 250 }
     ]
   }
-]
+
 
 export function reducer(state = initialState, action) {
   switch (action.type) {

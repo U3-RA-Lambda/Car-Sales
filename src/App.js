@@ -12,24 +12,6 @@ const App = (props) => {
 
   console.log('Props from App', props);
   
-  //move to ini redux, connect to app for data
-  
-  // const state = {
-  //   additionalPrice: 0, // what to update
-  //   car: {
-  //     price: 26395,
-  //     name: '2019 Ford Mustang',
-  //     image:
-  //       'https://cdn.motor1.com/images/mgl/0AN2V/s1/2019-ford-mustang-bullitt.jpg',
-  //     features: []
-  //   },
-  //   additionalFeatures: [
-  //     { id: 1, name: 'V-6 engine', price: 1500 },
-  //     { id: 2, name: 'Racing detail package', price: 1500 },
-  //     { id: 3, name: 'Premium sound system', price: 500 },
-  //     { id: 4, name: 'Rear spoiler', price: 250 }
-  //   ]
-  // };
 
   return (
     <div className="boxes">
@@ -37,12 +19,12 @@ const App = (props) => {
       <div className="box">
         <Header car={props.car} />
 
-        <AddedFeatures car={props.car}  />
+        <AddedFeatures car={props.car} removeFeature={props.removeFeature} />
         {/* removeFeature={props.removeFeature} */}
       </div>
       
       <div className="box">
-        <AdditionalFeatures additionalFeatures={props.additionalFeatures}  />
+        <AdditionalFeatures additionalFeatures={props.additionalFeatures} addFeature={props.addFeature} />
         {/* addFeature={props.addFeature} */}
         
         <Total car={props.car} additionalPrice={props.additionalPrice} 
@@ -51,6 +33,8 @@ const App = (props) => {
     </div>
   );
 };
+
+//accessing props anywhere to avoid having it passed props in App. Don't connect App or highest level component, can be in multiple components. Never put store in a place outside of the provider.
 
 const mapStateToProps = state => {
   console.log('map state to props in App', state);
@@ -61,6 +45,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect( mapStateToProps, {})(App);
-  // { addFeature, removeFeature }
-  // )(App); 
+export default connect(mapStateToProps, 
+  { addFeature, removeFeature })(App); 
+
+  //state.find based on ID to find car that is selected, a route with /id, or a box at top hooking to state, for state.selected (in the event of multiple)
