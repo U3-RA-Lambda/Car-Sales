@@ -1,4 +1,5 @@
 import React from 'react';
+// import { connect } from 'react-redux';
 
 const Header = props => {
   return (
@@ -13,3 +14,5 @@ const Header = props => {
 };
 
 export default Header;
+
+// does map/store/connect go here?
